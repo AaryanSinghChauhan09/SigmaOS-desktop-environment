@@ -1,0 +1,17 @@
+[package]
+name = "sigmaos-desktop-environment"
+version = "0.1.0"
+edition = "2021"
+authors = ["SigmaOS Project"]
+description = "Main desktop environment (Zenith/Cinnamon-based) with window management, panels, docks"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/AaryanSinghChauhan09/SigmaOS-desktop-environment"
+readme = "README.md"
+keywords = ["desktop", "gui", "cinnamon", "sigmaos"]
+categories = ["gui"]
+
+[dependencies]
+sigmaos-kernel = { version = "0.1", path = "../SigmaOS-kernel" }
+
+[profile.release]
+opt-level = 3

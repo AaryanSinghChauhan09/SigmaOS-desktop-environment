@@ -1,6 +1,11 @@
 # SigmaOS-desktop-environment
 
-Part of the SigmaOS multi-repository architecture.
+Polyglot desktop environment component for SigmaOS. The repository combines
+Rust, Zig, and Nim code for compositor, shell, panel, menu, and window-management
+work, with Cinnamon and Zenith among its declared desktop inspirations.
+
+The manifest, source tree, and component registry define the current scope; this
+overview does not imply every subsystem is integrated or release-ready.
 
 ## Principles
 - MODULARITY: Single responsibility per repository

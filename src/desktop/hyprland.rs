@@ -354,9 +354,9 @@ mod tests {
     fn test_switch_workspace() {
         let mut hyprland = HyprlandInstance::new();
         hyprland.init();
-        hyprland.create_workspace("2".to_string());
-        hyprland.switch_workspace(2).unwrap();
-        assert_eq!(hyprland.current_workspace.load(Ordering::Relaxed), 2);
+        let id = hyprland.create_workspace("2".to_string());
+        hyprland.switch_workspace(id).unwrap();
+        assert_eq!(hyprland.current_workspace.load(Ordering::Relaxed), id);
     }
 
     #[test]

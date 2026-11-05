@@ -1,78 +1,44 @@
-//! SigmaOS Desktop Environment
-//! Main desktop environment with window management, panels, docks
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct DesktopWorkspace {
+    pub id: u32,
+    pub name: String,
+}
 
-extern crate alloc;
+#[derive(Debug, Default)]
+pub struct DesktopEnvironmentCoordinator {
+    workspaces: Vec<DesktopWorkspace>,
+    active_workspace: u32,
+}
 
-pub mod desktop;
-pub mod compositor;
-pub mod shell;
-pub mod cinnamon;
-
-pub use desktop::DesktopEnvironment;
-
-pub mod klib {
-    pub use std::collections::*;
-    pub mod btreemap {
-        pub use std::collections::BTreeMap;
+impl DesktopEnvironmentCoordinator {
+    pub fn new() -> Self {
+        Self {
+            workspaces: vec![
+                DesktopWorkspace { id: 1, name: "Workspace 1".into() },
+                DesktopWorkspace { id: 2, name: "Workspace 2".into() },
+            ],
+            active_workspace: 1,
+        }
     }
-}
-
-pub mod ai {
-    pub mod agent_runtime {
-        pub type AgentId = u64;
-        pub struct AgentKernelBridge;
+    pub fn switch_workspace(&mut self, id: u32) {
+        if self.workspaces.iter().any(|w| w.id == id) {
+            self.active_workspace = id;
+        }
     }
+    pub fn current(&self) -> u32 { self.active_workspace }
 }
 
-pub mod accessibility {
-    #[derive(Debug, Clone)]
-    pub struct AccessibilityFeature;
-    #[derive(Debug, Clone)]
-    pub struct AccessibilityFramework;
-    #[derive(Debug, Clone)]
-    pub struct AccessibilitySetting;
-}
-
-pub mod compatibility {
-    #[derive(Debug, Clone)]
-    pub struct ApplicationBinary;
-    #[derive(Debug, Clone)]
-    pub struct BinaryFormat;
-    #[derive(Debug, Clone)]
-    pub struct CompatibilityManager;
-    #[derive(Debug, Clone)]
-    pub struct TargetPlatform;
-}
-
-pub mod customization {
-    #[derive(Debug, Clone)]
-    pub struct CustomizationEngine;
-}
-
-pub mod dashboard {
-    #[derive(Debug, Clone)]
-    pub struct SystemMonitor;
-}
-
-pub mod package {
-    #[derive(Debug, Clone)]
-    pub struct UnifiedPackage;
-    #[derive(Debug, Clone)]
-    pub struct UniversalPackageManager;
-}
-
-pub mod resilience {
-    #[derive(Debug, Clone)]
-    pub struct SelfHealingModule;
-}
-
-pub mod virtualization {
-    #[derive(Debug, Clone)]
-    pub struct Container;
-    #[derive(Debug, Clone)]
-    pub struct VirtualMachine;
-    #[derive(Debug, Clone)]
-    pub struct VirtualizationOrchestrator;
-    #[derive(Debug, Clone)]
-    pub struct VirtualizationTech;
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_desktop_environment_coordinator_aaa() {
+        // Arrange
+        let mut de = DesktopEnvironmentCoordinator::new();
+        assert_eq!(de.current(), 1);
+        // Act
+        de.switch_workspace(2);
+        // Assert
+        assert_eq!(de.current(), 2);
+    }
 }

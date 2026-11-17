@@ -1,6 +1,6 @@
 [component]
 name = "SigmaOS-desktop-environment"
 tier = 3
-description = "Cinnamon & Omarchy-inspired core desktop environment workspace and window compositor coordination"
+description = "Polyglot desktop environment, compositor, shell, panels, menus, and window-management glue"
 contracts = ['desktop-environment-core', 'workspace-switcher', 'panel-bridge']
 upstream_inspirations = ['https://github.com/linuxmint/cinnamon']
